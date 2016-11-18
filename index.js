@@ -6,7 +6,6 @@ var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 
-
 var app = express();
 
 var jsonParser = bodyParser.json();
@@ -36,12 +35,14 @@ var strategy = new BasicStrategy(function(username, password, callback) {
                     message: 'Incorrect password.'
                 });
             }
+            
             return callback(null, user);
         });
     });
 });
 
 passport.use(strategy);
+app.use(passport.initialize());
 
 app.get('/hidden', passport.authenticate('basic', {session: false}), function(req, res) {
     res.json({
