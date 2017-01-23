@@ -136,3 +136,5 @@ app.post('/users', jsonParser, function(req, res) {
 mongoose.connect('mongodb://localhost/auth').then(function() {
     app.listen(process.env.PORT || 8080);
 });
+
+exports.app = app;
