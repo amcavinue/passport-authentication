@@ -29,8 +29,7 @@ describe('Passport', () => {
   it('should authenticate a hidden url', (done) => {
     chai.request(app)
       .get('/hidden')
-      .set('Content-Type', 'application/json')
-      .send(JSON.stringify({'username': 'testUser0', 'password': 'testUser0'}))
+      .auth('testUser0', 'testUser0')
       .end(function(err, res) {
         // console.log(err, 37);
         should.equal(err, null);
